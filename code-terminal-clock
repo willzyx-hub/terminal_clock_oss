@@ -3,7 +3,6 @@ This is a simple Digital clock for Linux Operating system
 No copyright file.
 Published on https://github.com/willzyx-hub
 
-Note : This code is not meant to run on Windows Operating system. if you edit this code then you are using non standard code and it's not supported by me
 
 */
 
@@ -14,8 +13,6 @@ Note : This code is not meant to run on Windows Operating system. if you edit th
 #include <stdlib.h>
 
 using namespace std;
-
-// Im working to prevent windows user for running this but it does not work at this time maybe you can help me :)
 
 string getOsName()
 {
@@ -67,3 +64,58 @@ int main()
   
   return 0;
 }
+
+/* Add Windows support for Clock
+NOT OFFICIALLY SUPPORTED BY ME
+
+
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
+
+using namespace std;
+
+int main()
+{
+  int sec_prev=0;
+  while(1)
+  {
+    int seconds, minutes, hours;
+    string str;
+  
+    // Storing total second data.
+    time_t total_seconds=time(0);
+  
+    // Get values of seconds, minutes and hours
+    struct tm* ct=localtime(&total_seconds);
+  
+    seconds=ct->tm_sec;
+    minutes=ct->tm_min;
+    hours=ct->tm_hour;
+    
+    // Converting it into 12 hour format
+    if(hours>=12)
+      str="PM";
+    else
+      str="AM";
+    hours=hours>12?hours-12:hours;  
+    {
+        
+    }
+    
+    // Show the result
+    if(seconds==sec_prev+1 || (sec_prev==59 && seconds==0))
+    {
+      system("cls"); // using CLS command to clear Terminal on Windows 
+      cout << (hours<10?"0":"") << hours <<":" << (minutes<10?"0":"") << minutes << ":" << (seconds<10?"0":"") << seconds << " " << str << std::endl;
+    }
+    
+    sec_prev=seconds;
+    
+  }
+  
+  return 0;
+}
+*/
